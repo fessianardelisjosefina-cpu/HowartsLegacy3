@@ -1,0 +1,255 @@
+/* ANIMAGO: El ritual de transformación · style.css
+   1 Variables · 2 Base · 3 Capas de fondo y atmósfera · 4 Cabecera y menú
+   5 Portada · 6 Bloques y manuscritos · 7 Contenedor H5P · 8 Botones
+   9 Responsive y accesibilidad */
+
+/* 1. VARIABLES */
+:root {
+  --negro: #0B0D0D;
+  --bosque: #14201C;
+  --magico: #78977B;
+  --oro: #B49A65;
+  --marfil: #E8E2D5;
+  --gris: #A5ADA5;
+
+  --borde-oro: 1px solid rgba(180, 154, 101, .6);
+  --borde-verde: 1px solid rgba(120, 151, 123, .5);
+  --sombra-honda: 0 30px 60px rgba(11, 13, 13, .85), 0 8px 18px rgba(11, 13, 13, .7);
+  --marco-interior: inset 0 0 0 5px rgba(11, 13, 13, .55), inset 0 0 0 6px rgba(180, 154, 101, .28);
+  --papel: repeating-linear-gradient(0deg, rgba(232, 226, 213, .02) 0 1px, transparent 1px 4px),
+           repeating-linear-gradient(90deg, rgba(232, 226, 213, .012) 0 1px, transparent 1px 7px);
+
+  /* esquinas ornamentales doradas */
+  --esquinas:
+    linear-gradient(var(--oro), var(--oro)) left top / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left top / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right top / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right top / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left bottom / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) left bottom / 1px 22px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right bottom / 22px 1px no-repeat,
+    linear-gradient(var(--oro), var(--oro)) right bottom / 1px 22px no-repeat;
+
+  /* Cinzel y Lora; si no cargan, alternativas locales */
+  --f-titulo: "Cinzel", "Trajan Pro", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-texto: "Lora", Georgia, "Times New Roman", serif;
+}
+
+/* 2. BASE */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--negro);
+  color: var(--marfil);
+  font-family: var(--f-texto);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+main, .cabecera { position: relative; z-index: 2; }
+h1, h2, h3 { margin: 0 0 .5em; font-family: var(--f-titulo); font-weight: 700; line-height: 1.2; }
+h1 { font-size: clamp(2.8rem, 12vw, 7rem); letter-spacing: .14em; text-shadow: 0 0 40px rgba(180, 154, 101, .3), 0 4px 0 rgba(11, 13, 13, .8); }
+h2 { font-size: clamp(1.6rem, 5vw, 2.6rem); letter-spacing: .08em; text-align: center; margin-bottom: .2em; }
+h3 { font-size: 1.15rem; letter-spacing: .08em; color: var(--oro); margin-top: 1.4em; }
+h3:first-child { margin-top: 0; }
+p { margin: 0 0 1em; }
+a { color: var(--oro); transition: color .3s; }
+a:hover { color: var(--marfil); }
+:focus-visible { outline: 2px solid var(--marfil); outline-offset: 4px; }
+.saltar { position: absolute; left: .5rem; top: -4rem; z-index: 10; padding: .6rem 1rem; background: var(--negro); border: var(--borde-oro); }
+.saltar:focus { top: .5rem; }
+
+/* 3. CAPAS 1 Y 2: fondo general y atmósfera (fijas detrás del contenido) */
+.atmosfera {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 14%, rgba(232, 226, 213, .14), rgba(232, 226, 213, .04) 10%, transparent 26%),
+    radial-gradient(ellipse at 50% 110%, rgba(120, 151, 123, .22), transparent 55%),
+    linear-gradient(180deg, var(--negro), var(--bosque) 75%, var(--negro));
+}
+.atmosfera i { position: absolute; display: block; }
+.luz { inset: 0; background: radial-gradient(ellipse at 15% 30%, rgba(180, 154, 101, .1), transparent 40%); }
+.niebla {
+  inset: -15% -10%;
+  background: radial-gradient(ellipse at 25% 75%, rgba(165, 173, 165, .12), transparent 45%),
+              radial-gradient(ellipse at 80% 50%, rgba(120, 151, 123, .16), transparent 50%);
+  filter: blur(30px);
+  animation: deriva 50s ease-in-out infinite alternate;
+}
+.particulas {
+  inset: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(232, 226, 213, .9), transparent),
+    radial-gradient(2px 2px at 27% 64%, rgba(120, 151, 123, 1), transparent),
+    radial-gradient(1px 1px at 44% 12%, rgba(232, 226, 213, .8), transparent),
+    radial-gradient(1.5px 1.5px at 61% 46%, rgba(180, 154, 101, .9), transparent),
+    radial-gradient(1px 1px at 76% 78%, rgba(232, 226, 213, .8), transparent),
+    radial-gradient(2px 2px at 91% 30%, rgba(120, 151, 123, 1), transparent),
+    radial-gradient(1px 1px at 18% 90%, rgba(232, 226, 213, .7), transparent),
+    radial-gradient(1.5px 1.5px at 52% 86%, rgba(180, 154, 101, .9), transparent);
+  opacity: .55;
+  animation: titilar 9s ease-in-out infinite alternate;
+}
+.siluetas {
+  left: 0; right: 0; bottom: 0; height: 34%;
+  background: repeating-linear-gradient(90deg, rgba(11, 13, 13, .95) 0 .6rem, transparent .6rem 3.6rem),
+              repeating-linear-gradient(90deg, rgba(11, 13, 13, .75) 0 1.6rem, transparent 1.6rem 12rem);
+  -webkit-mask-image: linear-gradient(to top, #000, transparent);
+  mask-image: linear-gradient(to top, #000, transparent);
+}
+@keyframes deriva { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+@keyframes titilar { from { opacity: .3; } to { opacity: .65; } }
+
+/* 4. CABECERA Y MENÚ */
+.cabecera { position: sticky; top: 0; z-index: 5; background: linear-gradient(180deg, rgba(11, 13, 13, .92), rgba(11, 13, 13, .6)); border-bottom: var(--borde-verde); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.menu { display: flex; flex-wrap: wrap; justify-content: center; gap: .2rem 1.6rem; padding: .7rem 1rem; }
+.menu a { padding: .2rem .1rem; font-family: var(--f-titulo); font-size: .85rem; letter-spacing: .14em; text-decoration: none; color: var(--gris); border-bottom: 1px solid transparent; }
+.menu a:hover { color: var(--marfil); border-bottom-color: var(--oro); }
+
+/* 5. PORTADA */
+.hero { display: grid; place-items: center; min-height: calc(100vh - 3rem); padding: 3rem 1rem; text-align: center; }
+.hero-marco {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 52rem);
+  padding: clamp(2rem, 7vw, 4.5rem) clamp(1.2rem, 5vw, 3.5rem);
+  background: var(--papel), linear-gradient(160deg, rgba(20, 32, 28, .78), rgba(11, 13, 13, .72));
+  border: var(--borde-oro);
+  outline: 1px solid rgba(180, 154, 101, .26);
+  outline-offset: -14px;
+  box-shadow: var(--sombra-honda), var(--marco-interior), inset 20px 0 26px -18px rgba(11, 13, 13, .95), 0 0 60px rgba(120, 151, 123, .12);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.hero-marco::before { /* plano desplazado detrás */
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  transform: translate(16px, 16px);
+  background: linear-gradient(145deg, rgba(20, 32, 28, .7), rgba(11, 13, 13, .5));
+  border: var(--borde-verde);
+}
+.hero-marco::after { content: ""; position: absolute; inset: -8px; pointer-events: none; background: var(--esquinas); }
+.sello { margin: 0 0 .6rem; color: var(--oro); letter-spacing: .7em; }
+.subtitulo { margin: .2rem 0 0; font-family: var(--f-titulo); font-size: clamp(1rem, 3.2vw, 1.5rem); letter-spacing: .3em; color: var(--oro); }
+.frase { max-width: 32rem; margin: 0 auto 1.6rem; color: var(--gris); font-style: italic; }
+.sep { display: flex; align-items: center; justify-content: center; gap: .8rem; margin: 1rem auto 1.4rem; color: var(--oro); font-size: .8rem; letter-spacing: .3em; }
+.sep::before, .sep::after { content: ""; width: min(7rem, 22%); height: 1px; background: linear-gradient(90deg, transparent, var(--oro)); }
+.sep::after { transform: scaleX(-1); }
+
+/* 6. BLOQUES Y MANUSCRITOS (capas 3 y 4) */
+.bloque { width: min(100%, 60rem); margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 1rem; }
+.universo { width: min(100%, 52rem); }
+.manuscrito {
+  position: relative;
+  isolation: isolate;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 2.8rem);
+  /* página de manuscrito: manchas de envejecimiento, fibras y lomo sombreado */
+  background: radial-gradient(circle at 10% 14%, rgba(180, 154, 101, .08), transparent 32%),
+              radial-gradient(circle at 92% 88%, rgba(180, 154, 101, .06), transparent 34%),
+              var(--papel), linear-gradient(150deg, rgba(20, 32, 28, .86), rgba(11, 13, 13, .82));
+  border: var(--borde-oro);
+  outline: 1px solid rgba(180, 154, 101, .26);
+  outline-offset: -13px;
+  box-shadow: var(--sombra-honda), var(--marco-interior), inset 18px 0 24px -16px rgba(11, 13, 13, .95);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.manuscrito::before { /* plano intermedio desplazado */
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  transform: translate(12px, 12px) rotate(.4deg);
+  background: linear-gradient(145deg, rgba(120, 151, 123, .14), rgba(11, 13, 13, .6));
+  border: var(--borde-verde);
+}
+.manuscrito::after { content: ""; position: absolute; inset: -7px; pointer-events: none; background: var(--esquinas); }
+.manuscrito > p:first-child::first-letter { font-family: var(--f-titulo); font-weight: 700; font-size: 1.5em; color: var(--oro); }
+.creditos-lista p { margin-bottom: .6em; }
+.nota { color: var(--gris); font-size: .95rem; font-style: italic; }
+#creditos .manuscrito { margin-left: auto; margin-right: 0; }
+#licencia .manuscrito { margin-left: 0; margin-right: auto; }
+
+/* 7. CONTENEDOR H5P: sección principal, más ancha y con más profundidad */
+.experiencia { width: min(100%, 70rem); }
+.indicacion { max-width: 38rem; margin: 0 auto 2rem; text-align: center; color: var(--gris); font-style: italic; }
+.escenario-h5p {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(.6rem, 2.5vw, 1.4rem);
+  background: var(--papel), linear-gradient(160deg, rgba(20, 32, 28, .85), rgba(11, 13, 13, .85));
+  border: var(--borde-oro);
+  box-shadow: var(--sombra-honda), var(--marco-interior), 0 0 70px rgba(120, 151, 123, .16);
+}
+.escenario-h5p::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: translate(14px, 14px); background: rgba(20, 32, 28, .6); border: var(--borde-verde); }
+.escenario-h5p::after { content: ""; position: absolute; inset: -8px; pointer-events: none; background: var(--esquinas); }
+.h5p-contenedor { position: relative; width: 100%; max-width: 100%; overflow: hidden; background: var(--negro); border: var(--borde-verde); }
+/* Al pegar el iframe de H5P, ocupa todo el ancho y mantiene una altura cómoda.
+   Estas reglas pisan los atributos width/height del código de inserción. */
+.h5p-contenedor iframe { display: block; width: 100%; max-width: 100%; height: clamp(34rem, 85vh, 52rem); border: 0; }
+.h5p-pendiente { display: grid; place-items: center; min-height: clamp(20rem, 60vh, 34rem); padding: 1.5rem; text-align: center; color: var(--gris); font-family: var(--f-titulo); letter-spacing: .1em; border: 1px dashed rgba(180, 154, 101, .5); margin: .6rem; }
+
+/* 7b. PRODUCCIONES AUDIOVISUALES: cada pieza es una página del manuscrito con su reproductor */
+.producciones { width: min(100%, 70rem); }
+.rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 2.2rem; }
+.pieza { max-width: none; margin: 0; padding: clamp(1rem, 3vw, 1.6rem); }
+.pieza:nth-child(even) { margin-top: 1.6rem; } /* ligero desplazamiento entre planos */
+.pieza-video { position: relative; aspect-ratio: 16 / 9; margin-bottom: 1.2rem; background: var(--negro); border: var(--borde-oro); box-shadow: inset 0 0 30px rgba(11, 13, 13, .9); }
+.pieza-video video, .pieza-video iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: 100%; border: 0; background: var(--negro); }
+.video-pendiente { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; text-align: center; color: var(--gris); font-family: var(--f-titulo); font-size: .9rem; letter-spacing: .08em; }
+.pieza h3 { margin-top: 0; }
+.creditos-pieza { margin: 0; color: var(--gris); font-size: .9rem; font-style: italic; }
+
+/* 7c. CRÉDITOS */
+#creditos .manuscrito { max-width: 50rem; }
+.integrantes { margin: 0; padding: 0; list-style: none; }
+.integrantes li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem 1.5rem; padding: .5rem 0; border-bottom: 1px solid rgba(180, 154, 101, .2); }
+.integrantes .nombre { font-family: var(--f-titulo); letter-spacing: .04em; }
+.integrantes .rol { color: var(--gris); font-style: italic; font-size: .95rem; }
+.datos { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.5rem; margin: 0; }
+.datos dt { color: var(--oro); font-family: var(--f-titulo); font-size: .9rem; letter-spacing: .08em; }
+.datos dd { margin: 0; }
+.creditos .sep { margin: 1.6rem auto; }
+
+/* 8. BOTONES */
+.btn {
+  display: inline-block;
+  padding: .85em 2em;
+  font-family: var(--f-titulo);
+  font-size: .95rem;
+  letter-spacing: .14em;
+  text-decoration: none;
+  color: var(--marfil);
+  background: linear-gradient(145deg, rgba(20, 32, 28, .95), rgba(11, 13, 13, .95));
+  border: var(--borde-oro);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 3px rgba(11, 13, 13, .7), inset 0 0 0 4px rgba(120, 151, 123, .3), 0 8px 20px rgba(11, 13, 13, .7);
+  transition: background .4s, box-shadow .4s, border-color .4s;
+}
+.btn:hover { color: var(--marfil); border-color: var(--magico); background: linear-gradient(145deg, rgba(20, 32, 28, .95), rgba(120, 151, 123, .35)); box-shadow: inset 0 0 0 3px rgba(11, 13, 13, .7), inset 0 0 0 4px rgba(120, 151, 123, .5), 0 0 24px rgba(120, 151, 123, .35); }
+.btn:active { transform: translateY(1px); box-shadow: inset 0 3px 12px rgba(11, 13, 13, .9); }
+
+/* 9. RESPONSIVE Y ACCESIBILIDAD */
+@media (max-width: 700px) {
+  .pieza:nth-child(even) { margin-top: 0; }
+  .datos { grid-template-columns: 1fr; gap: 0; }
+  .datos dd { margin-bottom: .6rem; }
+  body { font-size: 1.05rem; }
+  .siluetas, .niebla { display: none; }
+  .hero-marco::before, .manuscrito::before, .escenario-h5p::before { transform: translate(6px, 6px); }
+  .hero-marco::after, .manuscrito::after, .escenario-h5p::after { inset: -4px; }
+  .menu { gap: .1rem 1rem; }
+  .menu a { font-size: .75rem; letter-spacing: .08em; }
+  #creditos .manuscrito, #licencia .manuscrito { margin-left: auto; margin-right: auto; }
+  .h5p-contenedor iframe { height: clamp(30rem, 80vh, 44rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

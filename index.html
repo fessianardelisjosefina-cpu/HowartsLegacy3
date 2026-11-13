@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANIMAGO – El ritual de transformación</title>
+  <meta name="description" content="Expansión narrativa interactiva del universo de Hogwarts Legacy.">
+  <!-- Tipografías: Cinzel (títulos) y Lora (textos). Si no cargan, el CSS usa alternativas locales. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="saltar" href="#experiencia">Saltar a la experiencia</a>
+
+  <!-- CAPA 1 y 2: fondo y atmósfera (decorativas, fijas detrás del contenido) -->
+  <div class="atmosfera" aria-hidden="true">
+    <i class="luz"></i><i class="niebla"></i><i class="particulas"></i><i class="siluetas"></i>
+  </div>
+
+  <header class="cabecera">
+    <nav class="menu" aria-label="Secciones de la página">
+      <a href="#inicio">Inicio</a>
+      <a href="#universo">Universo</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#producciones">Producciones</a>
+      <a href="#creditos">Créditos</a>
+      <a href="#licencia">Licencia</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- A. PORTADA -->
+    <section class="hero" id="inicio" aria-labelledby="t-hero">
+      <div class="hero-marco">
+        <p class="sello" aria-hidden="true">☾ ✦ ☽</p>
+        <h1 id="t-hero">ANIMAGO</h1>
+        <p class="subtitulo">El ritual de transformación</p>
+        <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+        <p class="frase">Entre las páginas más antiguas del mundo mágico se esconde un secreto: el de la transformación.</p>
+        <p><a class="btn" href="#experiencia">Comenzar el ritual</a></p>
+      </div>
+    </section>
+
+    <!-- B. INTRODUCCIÓN AL UNIVERSO -->
+    <section class="bloque universo" id="universo" aria-labelledby="t-universo">
+      <h2 id="t-universo">El secreto de los Furtivos</h2>
+      <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+      <article class="manuscrito">
+        <p>Eres un estudiante de Hogwarts y acabas de descubrir algo que no puedes ignorar: los Furtivos capturan, maltratan y comercializan criaturas mágicas.</p>
+        <p>Nadie más parece dispuesto a detenerlos. Por eso decides convertirte en Animago: transformarte para infiltrarte en uno de sus campamentos y liberar a los animales.</p>
+        <p>Para conseguirlo deberás atravesar el ritual de transformación: respetar sus instrucciones, reunir los ingredientes necesarios y esperar el momento adecuado.</p>
+      </article>
+    </section>
+
+    <!-- C. ACCESO A LA EXPERIENCIA INTERACTIVA (H5P Branching Scenario) -->
+    <section class="bloque experiencia" id="experiencia" aria-labelledby="t-exp">
+      <h2 id="t-exp">Atraviesa el ritual</h2>
+      <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+      <p class="indicacion">Acompaña al estudiante, toma tus decisiones y presta atención a las instrucciones del ritual: cada elección tiene consecuencias.</p>
+
+      <div class="escenario-h5p">
+        <!--
+          ===== CONTENEDOR DEL IFRAME DE H5P =====
+          1. Borrar el <div class="h5p-pendiente"> de abajo.
+          2. Pegar en su lugar el código COMPLETO del iframe que entrega H5P.com (opción Embed).
+          3. NO pegar la línea de código con h5p-resizer.js que suele acompañar al iframe (es un script):
+             este proyecto no usa JavaScript. El CSS (.h5p-contenedor iframe) ya fija ancho y alto.
+        -->
+        <div class="h5p-contenedor" id="h5p-contenedor">
+          <div class="h5p-pendiente">
+            [AQUÍ VA EL CÓDIGO IFRAME DE H5P]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. PRODUCCIONES AUDIOVISUALES (los materiales se incorporan después) -->
+    <section class="bloque producciones" id="producciones" aria-labelledby="t-prod">
+      <h2 id="t-prod">Producciones audiovisuales</h2>
+      <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+      <p class="indicacion">[Texto breve de presentación de las producciones: a completar]</p>
+      <!--
+        CÓMO AGREGAR UNA PRODUCCIÓN
+        · Para sumar otra pieza, copiar un bloque <article class="manuscrito pieza"> completo.
+        · Video alojado en el repositorio (carpeta assets/videos/):
+            <video controls preload="metadata" poster="assets/images/NOMBRE.jpg">
+              <source src="assets/videos/NOMBRE.mp4" type="video/mp4">
+              <track kind="subtitles" src="assets/videos/NOMBRE-es.vtt" srclang="es" label="Español">
+            </video>
+        · Video externo (por ejemplo YouTube): pegar el código <iframe ...></iframe> de "Compartir > Insertar".
+        · En ambos casos, pegarlo dentro de <div class="pieza-video">: el CSS lo adapta al ancho en proporción 16:9.
+      -->
+      <div class="rejilla">
+        <article class="manuscrito pieza">
+          <div class="pieza-video">
+            <!-- PRODUCCIÓN 1: pegar aquí el <video> local o el <iframe> externo (ver instrucciones arriba) y borrar el recuadro siguiente -->
+            <div class="video-pendiente">[Espacio para la producción 1]</div>
+          </div>
+          <h3>[Título de la producción]</h3>
+          <p>[Descripción breve de la pieza]</p>
+          <p class="creditos-pieza">Créditos de la pieza: [completar, si corresponde]</p>
+        </article>
+        <article class="manuscrito pieza">
+          <div class="pieza-video">
+            <!-- PRODUCCIÓN 2: pegar aquí el <video> local o el <iframe> externo (ver instrucciones arriba) y borrar el recuadro siguiente -->
+            <div class="video-pendiente">[Espacio para la producción 2]</div>
+          </div>
+          <h3>[Título de la producción]</h3>
+          <p>[Descripción breve de la pieza]</p>
+          <p class="creditos-pieza">Créditos de la pieza: [completar, si corresponde]</p>
+        </article>
+        <article class="manuscrito pieza">
+          <div class="pieza-video">
+            <!-- PRODUCCIÓN 3: pegar aquí el <video> local o el <iframe> externo (ver instrucciones arriba) y borrar el recuadro siguiente -->
+            <div class="video-pendiente">[Espacio para la producción 3]</div>
+          </div>
+          <h3>[Título de la producción]</h3>
+          <p>[Descripción breve de la pieza]</p>
+          <p class="creditos-pieza">Créditos de la pieza: [completar, si corresponde]</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- E. CRÉDITOS (completar los campos entre corchetes) -->
+    <section class="bloque" id="creditos" aria-labelledby="t-cred">
+      <h2 id="t-cred">Créditos</h2>
+      <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+      <article class="manuscrito creditos">
+        <h3>Integrantes</h3>
+        <ul class="integrantes">
+          <li><span class="nombre">Accastello Valentina</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+          <li><span class="nombre">Da Silvera Yolanda Yaquelin</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+          <li><span class="nombre">Ferreyra, Josephine Annette</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+          <li><span class="nombre">Fessia Nardelis, María Josefina</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+          <li><span class="nombre">Gutierrez Berroteran Patricia Andrea</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+          <li><span class="nombre">Juarez Vizueta, Chabela</span> <span class="rol">[Rol o área de trabajo: opcional]</span></li>
+        </ul>
+        <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+        <h3>Datos institucionales</h3>
+        <dl class="datos">
+          <dt>Proyecto</dt><dd>ANIMAGO – El ritual de transformación</dd>
+          <dt>Institución</dt><dd>Universidad Nacional de Villa María</dd>
+          <dt>Carrera</dt><dd>Diseño y Producción Audiovisual</dd>
+          <dt>Asignatura</dt><dd>Narrativas Audiovisuales Interactivas</dd>
+          <dt>Docente</dt><dd>[Nombre del docente]</dd>
+          <dt>Año</dt><dd>2026</dd>
+        </dl>
+        <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+        <h3>Recursos externos</h3>
+        <p>[Música, imágenes u otros materiales]: [autor, fuente y licencia]</p>
+        <p>Tipografías: Cinzel y Lora (Google Fonts). [Completar autoría y licencia]</p>
+        <p>Universo de referencia: videojuego <em>Hogwarts Legacy</em>. [Completar titulares de los derechos]</p>
+      </article>
+    </section>
+
+    <!-- F. LICENCIA -->
+    <section class="bloque" id="licencia" aria-labelledby="t-lic">
+      <h2 id="t-lic">Licencia</h2>
+      <div class="sep" aria-hidden="true"><span>☽ ◆ ☽</span></div>
+      <article class="manuscrito">
+        <p>Licencia Creative Commons elegida por el grupo: [CC BY o CC BY-SA: a confirmar].</p>
+        <p>Enlace oficial de la licencia: [pegar aquí el enlace de la licencia seleccionada].</p>
+        <p class="nota">La licencia se aplica a los materiales originales del grupo y no otorga derechos sobre materiales de terceros.</p>
+      </article>
+    </section>
+
+  </main>
+</body>
+</html>
